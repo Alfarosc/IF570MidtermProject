@@ -2,6 +2,7 @@ package com.example.if570_lab_uts_alfarizkyoscandar_00000058407.Navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class NavItem(
@@ -18,7 +19,7 @@ val listOfNavItems = listOf(
     ),
     NavItem(
         label = "Profile",
-        icon = Icons.Default.Home,
+        icon = Icons.Default.Person,
         route = Pagees.ProfilePage.name
     )
 )

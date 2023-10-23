@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.Navigation.Pagees
 import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.pages.ClassEnrollmentPage
 import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.pages.HomePage
 import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.pages.LoginPage
@@ -29,9 +30,6 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = "login"
                 ) {
-                    composable("login") {
-                        LoginPage(navController)
-                    }
                     composable(
                         route = "home/{name}", // Define a parameter for the "home" destination
                         arguments = listOf(navArgument("name") { type = NavType.StringType })
@@ -39,6 +37,15 @@ class MainActivity : ComponentActivity() {
                         val name = backStackEntry.arguments?.getString("name")
                         HomePage(navController, name.orEmpty())
                     }
+                    composable("login") {
+                        LoginPage(navController)
+                    }
+//                    composable(route = Pagees.ClassEnrollmentPage.name) {
+//                        ClassEnrollmentPage()
+//                    }
+//                    composable(route = Pagees.ProfilePage.name) {
+//                        ProfilePage()
+//                    }
 //                    composable("ClassEnrollment") {
 //                        ClassEnrollmentPage(navController)
 //                    }

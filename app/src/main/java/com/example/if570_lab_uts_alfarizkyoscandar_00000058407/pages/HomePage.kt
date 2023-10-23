@@ -14,6 +14,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -66,7 +68,7 @@ fun HomePage(navController: NavHostController, name: String) {
         topBar = {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDestination = navBackStackEntry?.destination
-
+            var expanded by remember { mutableStateOf(false) }
             Column {
                 CenterAlignedTopAppBar(
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -90,14 +92,36 @@ fun HomePage(navController: NavHostController, name: String) {
                             )
                         }
                     },
+//                    actions = {
+//                        IconButton(onClick = { null }) {
+//                            Icon(
+//                                imageVector = Icons.Filled.MoreVert,
+//                                contentDescription = "Localized description",
+//                                tint = Color.White,
+//                            )
+//                        }
+//                    },
                     actions = {
-                        IconButton(onClick = { null }) {
-                            Icon(
-                                imageVector = Icons.Filled.MoreVert,
-                                contentDescription = "Localized description",
-                                tint = Color.White,
-                            )
+                        Box{
+                            IconButton(onClick = { expanded = true }) {
+                                Icon(
+                                    imageVector = Icons.Filled.MoreVert,
+                                    contentDescription = "Localized description",
+                                    tint = Color.White,
+                                )
+                            }
+                            DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }, ) {
+                                DropdownMenuItem(
+                                    onClick = { /* Handle edit! */ },
+                                    text = { Text("Hi, $name!") }
+                                )
+                                DropdownMenuItem(
+                                    onClick = { /* Handle edit! */ },
+                                    text = { Text("Logout") }
+                                )
+                            }
                         }
+
                     },
                     scrollBehavior = scrollBehavior,
                 )
