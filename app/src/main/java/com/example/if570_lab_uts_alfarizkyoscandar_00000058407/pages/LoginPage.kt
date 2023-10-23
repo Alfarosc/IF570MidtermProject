@@ -44,17 +44,8 @@ import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.R
 
 //@Preview
 @OptIn(ExperimentalMaterial3Api::class)
-//@Preview
 @Composable
 fun LoginPage(navController: NavHostController){
-//    var text by rememberSaveable { mutableStateOf("") }
-//    val errorMessage = "Text input too long"
-//    var isError by rememberSaveable { mutableStateOf(false) }
-//    val charLimit = 10
-
-//    fun validate(text: String) {
-//        isError = text.length > charLimit
-//    }
 
     Column(
         modifier = Modifier
@@ -89,37 +80,11 @@ fun LoginPage(navController: NavHostController){
         LoginField(
             value = credentials.login,
             onChange = { data -> credentials = credentials.copy(login = data) },
-//            onTextChange = { /* do something */ },
-//            isError = isError,
-//            errorMessage = "Text input too long",
+
             modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp),
         )
 
-//        OutlinedTextField(
-//            value = text,
-//            onValueChange = {
-//                text = it
-//                validate(text)
-//            },
-//            singleLine = true,
-//            label = { Text(if (isError) "Username*" else "Username") },
-//            supportingText = {
-//                Text(
-//                    modifier = Modifier.fillMaxWidth(),
-//                    text = "Limit: ${text.length}/$charLimit",
-//                    textAlign = TextAlign.End,
-//                )
-//            },
-//            isError = isError,
-//            keyboardActions = KeyboardActions { validate(text) },
-//            modifier = Modifier.semantics {
-//                // Provide localized description of the error
-//                if (isError) error(errorMessage)
-//            }
-//        )
-
         Button(
-//            onClick = {null},
             onClick = {
                 if (credentials.login.isEmpty()){
                     Toast.makeText(context, "Please fill the username", Toast.LENGTH_SHORT).show()
@@ -128,8 +93,6 @@ fun LoginPage(navController: NavHostController){
                     navController.navigate("home/${credentials.login}")
                 }
             },
-//            enabled = credentials.isNotEmpty(),
-//            shape = RoundedCornerShape(5.dp),
             modifier = Modifier
                 .padding(vertical = 8.dp)
         ) {
@@ -162,17 +125,9 @@ fun LoginField(
     submit : () -> Unit = { },
     label: String = "Login",
     placeholder: String = "Enter your name"
-//    isError: Boolean,
-//    errorMessage: String,
 ) {
     var text by rememberSaveable { mutableStateOf("") }
-//    val errorMessage = "Text input too long"
     var isError by rememberSaveable { mutableStateOf(false) }
-//    val charLimit = 10
-//
-//    fun validate(text: String) {
-//        isError = text.length > 10
-//    }
 
     OutlinedTextField(
         value = value,
@@ -184,18 +139,5 @@ fun LoginField(
         ),
         placeholder = { Text(placeholder) },
         label = { Text(label) },
-//        label = { Text(if (isError) "Username*" else "Username") },
-//        supportingText = {
-//            Text(
-//                modifier = Modifier.fillMaxWidth(),
-//                text = "Limit: ${text.length}/10",
-//                textAlign = TextAlign.End,
-//            )
-//        },
-//        isError = isError,
-//        modifier = modifier.semantics {
-//            // Provide localized description of the error
-//            if (isError) error(errorMessage)
-//        }
     )
 }

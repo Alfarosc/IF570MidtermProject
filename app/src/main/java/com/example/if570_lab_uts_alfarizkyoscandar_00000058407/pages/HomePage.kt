@@ -51,6 +51,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.MainActivity
 import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.Navigation.Pagees
 import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.Navigation.listOfNavItems
 
@@ -107,8 +108,8 @@ fun HomePage(navController: NavHostController, name: String) {
                                     text = { Text("Hi, $name!") }
                                 )
                                 DropdownMenuItem(
-                                    onClick = { /* Handle edit! */ },
-                                    text = { Text("Logout") }
+                                    text = { Text("Logout") },
+                                    onClick = { navController.navigate("login") },
                                 )
                             }
                         }
@@ -148,6 +149,7 @@ fun HomePage(navController: NavHostController, name: String) {
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 fun ScrollContent(
     innerPadding: PaddingValues,

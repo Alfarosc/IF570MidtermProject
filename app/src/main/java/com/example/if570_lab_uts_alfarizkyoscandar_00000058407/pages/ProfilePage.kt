@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
-@Preview
+//@Preview
 @Composable
 fun ProfilePage(name: String) {
     Column(

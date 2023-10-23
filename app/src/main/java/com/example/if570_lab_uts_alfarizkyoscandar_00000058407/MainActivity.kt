@@ -45,19 +45,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    IF570_LAB_UTS_AlfarizkyOscandar_00000058407Theme {
-//        Greeting("Android")
-//    }
-//}
