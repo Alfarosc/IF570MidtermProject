@@ -40,18 +40,6 @@ class MainActivity : ComponentActivity() {
                     composable("login") {
                         LoginPage(navController)
                     }
-//                    composable(route = Pagees.ClassEnrollmentPage.name) {
-//                        ClassEnrollmentPage()
-//                    }
-//                    composable(route = Pagees.ProfilePage.name) {
-//                        ProfilePage()
-//                    }
-//                    composable("ClassEnrollment") {
-//                        ClassEnrollmentPage(navController)
-//                    }
-//                    composable("ClassEnrollment") {
-//                        ProfilePage(navController)
-//                    }
                 }
             }
         }

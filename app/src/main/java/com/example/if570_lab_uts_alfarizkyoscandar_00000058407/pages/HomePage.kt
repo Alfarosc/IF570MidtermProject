@@ -92,15 +92,6 @@ fun HomePage(navController: NavHostController, name: String) {
                             )
                         }
                     },
-//                    actions = {
-//                        IconButton(onClick = { null }) {
-//                            Icon(
-//                                imageVector = Icons.Filled.MoreVert,
-//                                contentDescription = "Localized description",
-//                                tint = Color.White,
-//                            )
-//                        }
-//                    },
                     actions = {
                         Box{
                             IconButton(onClick = { expanded = true }) {
@@ -153,15 +144,15 @@ fun HomePage(navController: NavHostController, name: String) {
 
         },
     ) { innerPadding ->
-        ScrollContent(innerPadding,tabIndex, navController)
+        ScrollContent(innerPadding,navController, name)
     }
 }
 
 @Composable
 fun ScrollContent(
     innerPadding: PaddingValues,
-    tabIndex: Int,
-    navController: NavHostController
+    navController: NavHostController,
+    name: String
 ) {
 
 //        // TODO: Add content here
@@ -175,7 +166,10 @@ fun ScrollContent(
                 ClassEnrollmentPage()
             }
             composable(route = Pagees.ProfilePage.name) {
-                ProfilePage()
+                ProfilePage(name)
+            }
+            composable("login") {
+                LoginPage(navController)
             }
         }
 }
