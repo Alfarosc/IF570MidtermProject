@@ -18,6 +18,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -54,11 +56,7 @@ import com.example.if570_lab_uts_alfarizkyoscandar_00000058407.Navigation.listOf
 @Composable
 fun HomePage(navController: NavHostController, name: String) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
-    var state by remember { mutableStateOf(0) }
-    val titles = listOf("Tab 1", "Tab 2")
     var tabIndex by remember { mutableStateOf(0) }
-
-    val tabs = listOf("Class Enrollment", "Profile")
 
     val navController = rememberNavController()
 
@@ -84,7 +82,7 @@ fun HomePage(navController: NavHostController, name: String) {
                         )
                     },
                     navigationIcon = {
-                        IconButton(onClick = { navController.popBackStack() }) {
+                        IconButton(onClick = { navController.navigate("login") }) {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
                                 contentDescription = "Localized description",
@@ -103,45 +101,30 @@ fun HomePage(navController: NavHostController, name: String) {
                     },
                     scrollBehavior = scrollBehavior,
                 )
-//                -------------------------------------------------------------------------
                 Column {
-                    TabRow(selectedTabIndex = state) {
-                        listOfNavItems.forEach{ navItem ->
+                    TabRow(
+                        selectedTabIndex = 0,
+                        containerColor = Color(0xFF083C52),
+                        contentColor = Color.White,
+                    ) {
+                        listOfNavItems.forEach { navItem ->
                             Tab(
+                                icon = { Icon(imageVector = navItem.icon, contentDescription = null) },
+                                text = { Text(text = navItem.label) },
                                 selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
-//                                titles = Text(text = navItem.label),
-//                                onClick = { state = index },
                                 onClick = {
-                                    navController.navigate(navItem.route){
+                                    navController.navigate(navItem.route) {
                                         popUpTo(navController.graph.findStartDestination().id) {
                                             saveState = true
                                         }
                                         launchSingleTop = true
                                         restoreState = true
                                     }
-                                },
-//                                selected = (index == state)
+                                }
                             )
                         }
                     }
-//                    Text(
-//                        modifier = Modifier.align(Alignment.CenterHorizontally),
-//                        text = "Fancy tab ${state + 1} selected",
-//                        style = MaterialTheme.typography.bodyLarge
-//                    )
-                    Text(text = "Welcome, $name!", modifier = Modifier.padding(16.dp))
                 }
-//                -------------------------------------------------------------------------
-//                Column(modifier = Modifier.fillMaxWidth()) {
-//                    TabRow(selectedTabIndex = tabIndex) {
-//                        listOfNavItems.forEachIndexed { index, navItem ->
-//                            Tab(text = { Text(navItem.label) },
-//                                selected = tabIndex == index,
-//                                onClick = { tabIndex = index }
-//                            )
-//                        }
-//                    }
-//                }
             }
 
         },
@@ -156,34 +139,21 @@ fun ScrollContent(
     tabIndex: Int,
     navController: NavHostController
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding)
-            .verticalScroll(rememberScrollState())
-    ) {
+
 //        // TODO: Add content here
-        val navController = rememberNavController()
         NavHost(
             navController = navController,
-            startDestination = Pagees.ProfilePage.name,
+            startDestination = Pagees.ClassEnrollmentPage.name,
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(innerPadding)
         ) {
-            composable(route = Pagees.ProfilePage.name) {
-                ProfilePage()
-            }
             composable(route = Pagees.ClassEnrollmentPage.name) {
                 ClassEnrollmentPage()
             }
+            composable(route = Pagees.ProfilePage.name) {
+                ProfilePage()
+            }
         }
-//        -------------------------------------------------------------------------
-//        when (tabIndex) {
-//            0 -> navController.navigate("classEnrollment")
-//            1 -> navController.navigate("ProfilePage")
-//        }
-    }
 }
 
 @Composable
